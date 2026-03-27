@@ -232,7 +232,9 @@
             </div>
             <div style="margin-top:25px;display:flex;gap:15px;justify-content:center;flex-wrap:wrap">
                 <button class="btn" onclick="location.reload()">🔄 Recommencer</button>
-                <button class="btn-secondary" onclick="shareResults()">📤 Partager</button>
+                <button class="btn-secondary" onclick="shareWhatsApp()">💬 WhatsApp</button>
+                <button class="btn-secondary" onclick="shareEmail()">📧 Email</button>
+                <button class="btn-secondary" onclick="copyResults()">📋 Copier</button>
             </div>
         </div>
     </div>
@@ -647,12 +649,15 @@ function renderBell(uIQ){
 function confirmQuit(){clearInterval(timerI);document.getElementById('quit-modal').style.display='flex'}
 function closeQuit(){document.getElementById('quit-modal').style.display='none';const q=questions[curQ];if(q&&q.type!=='memory')startTimer(q)}
 function quitTest(){document.getElementById('quit-modal').style.display='none';clearInterval(timerI);showScreen('screen-welcome')}
-function shareResults(){
+function getShareText(){
     const iq=document.getElementById('iq-number').textContent;
-    const t=`🧠 NeuroTest — Mon QI estimé : ${iq} !\nTest semi-pro : 90 questions, 8 catégories cognitives.`;
-    if(navigator.share)navigator.share({title:'NeuroTest',text:t});
-    else navigator.clipboard.writeText(t).then(()=>alert('Copié dans le presse-papiers !'));
+    const range=document.getElementById('iq-range').textContent;
+    const acc=document.getElementById('stat-accuracy').textContent;
+    return `🧠 NeuroTest — Mon QI estimé : ${iq} (${range})\n📊 Précision : ${acc}\nTest semi-pro : 91 questions, 8 catégories cognitives.\n\n👉 Passe le test : https://natquinson-cmd.github.io/NeuroTest-QI/`;
 }
+function shareWhatsApp(){window.open('https://wa.me/?text='+encodeURIComponent(getShareText()),'_blank')}
+function shareEmail(){window.open('mailto:?subject='+encodeURIComponent('🧠 Mon résultat NeuroTest')+'&body='+encodeURIComponent(getShareText()))}
+function copyResults(){navigator.clipboard.writeText(getShareText()).then(()=>{const b=event.target;b.textContent='✅ Copié !';setTimeout(()=>b.textContent='📋 Copier',2000)})}
 </script>
 </body>
 </html>
