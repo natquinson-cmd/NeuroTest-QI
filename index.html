@@ -154,7 +154,7 @@
             8 dimensions cognitives : logique numérique, verbal, mémoire (directe + inversée),
             calcul, abstraction, déduction, matrices visuelles et vitesse de traitement.<br>
             ⏱️ Le chronomètre influence le score — répondez vite ET juste !<br>
-            📊 Marge d'erreur estimée : <strong>±7 points</strong>
+            📊 Marge d'erreur estimée : <strong>±5 points</strong>
         </div>
     </div>
     <!-- QUIZ -->
@@ -228,7 +228,7 @@
             <h3 style="margin-bottom:5px;font-family:var(--doodle);font-size:1.5em">📋 Performance par catégorie</h3>
             <div class="categories-grid" id="categories-grid"></div>
             <div class="disclaimer">
-                ⚠️ <strong>Avertissement :</strong> Ce test semi-professionnel (90 questions, 8 catégories, marge ±7 pts) offre une bonne estimation mais ne remplace pas une évaluation psychométrique clinique (WAIS-IV, WISC-V). Pour un diagnostic officiel, consultez un psychologue qualifié.
+                ⚠️ <strong>Avertissement :</strong> Ce test semi-professionnel (90 questions, 8 catégories, marge ±5 pts) offre une bonne estimation mais ne remplace pas une évaluation psychométrique clinique (WAIS-IV, WISC-V). Pour un diagnostic officiel, consultez un psychologue qualifié.
             </div>
             <div style="margin-top:25px;display:flex;gap:15px;justify-content:center;flex-wrap:wrap">
                 <button class="btn" onclick="location.reload()">🔄 Recommencer</button>
@@ -607,7 +607,7 @@ function showResults(){
     document.getElementById('iq-range').textContent=rng?rng[2]:'';
     const perc=normCDF(z)*100;
     document.getElementById('iq-percentile').textContent=`Vous êtes au-dessus de ${Math.round(perc)}% de la population`;
-    document.getElementById('iq-margin').textContent=`Intervalle de confiance : ${Math.max(55,cIQ-7)} — ${Math.min(160,cIQ+7)} (±7 pts)`;
+    document.getElementById('iq-margin').textContent=`Intervalle de confiance : ${Math.max(55,cIQ-5)} — ${Math.min(160,cIQ+5)} (±5 pts)`;
     document.getElementById('stat-correct').textContent=`${nOk}/${N}`;
     document.getElementById('stat-time').textContent=`${avg.toFixed(1)}s`;
     document.getElementById('stat-accuracy').textContent=`${Math.round(acc)}%`;
